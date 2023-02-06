@@ -14,7 +14,7 @@ let dados = [
   ["S", "U", "T", "E", "P", "L"],
   ["N", "O", "D", "U", "T", "C"],
   ["J", "R", "L", "G", "U", "I"],
-  ["J", "Q", "B", "M", "O", "A"]
+  ["J", "Q", "B", "M", "O", "A"],
 ];
 
 function mezclarDados(dados) {
@@ -48,7 +48,11 @@ console.log(dados);
 document.getElementById("tirar").addEventListener("click", function () {
   // let letra = dado1[Math.floor(Math.random() * 6)];
   // document.getElementById("u1").innerText = letra;
+  stopTimer();
+  contador.innerText = timeLeft;
+
   mezclarDados(dados);
+  startTimer();
 
   let cuadros = document.getElementsByClassName("dado");
 
@@ -57,3 +61,44 @@ document.getElementById("tirar").addEventListener("click", function () {
   }
   console.log(dados[1]);
 });
+document.getElementById("tiempo").addEventListener("click", function () {
+  document.getElementById("modal").style.display = "none";
+});
+
+// Start with an initial value of 20 seconds
+// Defino el valor del temporizador
+let TIME_LIMIT = 5;
+
+// Initially, no time has passed, but this will count up
+// and subtract from the TIME_LIMIT
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+
+let contador = document.getElementById("contador");
+
+let interval = null;
+
+function startTimer() {
+  TIME_LIMIT = 5;
+  timePassed = 0;
+  timeLeft = TIME_LIMIT;
+
+  interval = setInterval(() => {
+    if (timeLeft === 1) {
+      document.getElementById("modal").style.display = "flex";
+      stopTimer();
+    }
+    // The amount of time passed increments by one
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+
+    // The time left label is updated
+    contador.innerText = timeLeft;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval);
+  // liberar nuestro inervalId de la variable
+  interval = null;
+}
