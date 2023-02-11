@@ -67,7 +67,7 @@ document.getElementById("tiempo").addEventListener("click", function () {
 
 // Start with an initial value of 20 seconds
 // Defino el valor del temporizador
-let TIME_LIMIT = 60;
+let TIME_LIMIT = 120;
 
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
@@ -79,7 +79,7 @@ let contador = document.getElementById("contador");
 let interval = null;
 
 function startTimer() {
-  TIME_LIMIT = 60;
+  TIME_LIMIT = 120;
   timePassed = 0;
   timeLeft = TIME_LIMIT;
 
